@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class InviteCommand implements CommandExecutor {
-    MSocial plugin;
+    private MSocial plugin;
 
     public InviteCommand(MSocial instance) {
         plugin = instance;

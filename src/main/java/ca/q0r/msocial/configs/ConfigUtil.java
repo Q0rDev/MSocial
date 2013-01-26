@@ -13,17 +13,17 @@ public class ConfigUtil {
     private static File file;
     private static Boolean changed;
 
-    static ArrayList<String> sayAliases = new ArrayList<String>();
-    static ArrayList<String> shoutAliases = new ArrayList<String>();
-    static ArrayList<String> muteAliases = new ArrayList<String>();
-    static ArrayList<String> pmAliases = new ArrayList<String>();
-    static ArrayList<String> replyAliases = new ArrayList<String>();
-    static ArrayList<String> inviteAliases = new ArrayList<String>();
-    static ArrayList<String> acceptAliases = new ArrayList<String>();
-    static ArrayList<String> denyAliases = new ArrayList<String>();
-    static ArrayList<String> leaveAliases = new ArrayList<String>();
+    private static ArrayList<String> sayAliases = new ArrayList<String>();
+    private static ArrayList<String> shoutAliases = new ArrayList<String>();
+    private static ArrayList<String> muteAliases = new ArrayList<String>();
+    private static ArrayList<String> pmAliases = new ArrayList<String>();
+    private static ArrayList<String> replyAliases = new ArrayList<String>();
+    private static ArrayList<String> inviteAliases = new ArrayList<String>();
+    private static ArrayList<String> acceptAliases = new ArrayList<String>();
+    private static ArrayList<String> denyAliases = new ArrayList<String>();
+    private static ArrayList<String> leaveAliases = new ArrayList<String>();
 
-    static HashMap<String, List<String>> aliasMap = new HashMap<String, List<String>>();
+    private static HashMap<String, List<String>> aliasMap = new HashMap<String, List<String>>();
 
     public static void initialize() {
         load();

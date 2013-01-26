@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class DenyCommand implements CommandExecutor {
-    MSocial plugin;
+    private MSocial plugin;
 
     public DenyCommand(MSocial instance) {
         plugin = instance;

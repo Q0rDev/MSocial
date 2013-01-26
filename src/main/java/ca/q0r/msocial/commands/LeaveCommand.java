@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class LeaveCommand implements CommandExecutor {
-    MSocial plugin;
+    private MSocial plugin;
 
     public LeaveCommand(MSocial instance) {
         plugin = instance;

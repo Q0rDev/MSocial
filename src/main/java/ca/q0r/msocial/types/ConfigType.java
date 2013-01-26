@@ -6,17 +6,7 @@ import com.miraclem4n.mchat.util.MessageUtil;
 import java.util.ArrayList;
 
 public enum ConfigType {
-    OPTION_SPOUT("option.spoutPM"),
-
-    ALIASES_SAY("aliases.mchatsay"),
-    ALIASES_PM("aliases.pmchat"),
-    ALIASES_PM_REPLY("aliases.pmchatreply"),
-    ALIASES_PM_INVITE("aliases.pmchatinvite"),
-    ALIASES_PM_ACCEPT("aliases.pmchataccept"),
-    ALIASES_PM_DENY("aliases.pmchatdeny"),
-    ALIASES_PM_LEAVE("aliases.pmchatleave"),
-    ALIASES_SHOUT("aliases.mchatshout"),
-    ALIASES_MUTE("aliases.mchatmute");
+    OPTION_SPOUT("option.spoutPM");
 
     private final String option;
 

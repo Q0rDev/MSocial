@@ -7,9 +7,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 
 public class LocaleUtil {
-    static YamlConfiguration config;
-    static File file;
-    static Boolean changed;
+    private static YamlConfiguration config;
+    private static File file;
+    private static Boolean changed;
 
     public static void initialize() {
         load();

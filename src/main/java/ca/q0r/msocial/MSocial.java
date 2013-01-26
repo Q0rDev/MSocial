@@ -22,9 +22,6 @@ public class MSocial extends JavaPlugin {
     public PluginManager pm;
     public PluginDescriptionFile pdfFile;
 
-    // Metrics
-    public Metrics metrics;
-
     // Spout
     public Boolean spoutB = false;
 
@@ -106,6 +103,7 @@ public class MSocial extends JavaPlugin {
     }
 
     void setupCommands() {
+        regCommands("msocial", new MSocialCommand());
         regCommands("pmchat", new PMCommand(this));
         regCommands("pmchataccept", new AcceptCommand(this));
         regCommands("pmchatdeny", new DenyCommand(this));
@@ -128,11 +126,6 @@ public class MSocial extends JavaPlugin {
     }
 
     public void initializeConfigs() {
-        ConfigUtil.initialize();
-        LocaleUtil.initialize();
-    }
-
-    public void reloadConfigs() {
         ConfigUtil.initialize();
         LocaleUtil.initialize();
     }

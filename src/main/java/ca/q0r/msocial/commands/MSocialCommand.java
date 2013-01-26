@@ -2,6 +2,7 @@ package ca.q0r.msocial.commands;
 
 import ca.q0r.msocial.MSocial;
 import ca.q0r.msocial.configs.ConfigUtil;
+import ca.q0r.msocial.configs.LocaleUtil;
 import com.miraclem4n.mchat.util.MessageUtil;
 import com.miraclem4n.mchat.util.MiscUtil;
 import org.bukkit.command.Command;
@@ -9,11 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public class MSocialCommand implements CommandExecutor {
-    MSocial plugin;
-
-    public MSocialCommand(MSocial instance) {
-        plugin = instance;
-    }
+    public MSocialCommand() { }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("msocial"))
@@ -28,6 +25,8 @@ public class MSocialCommand implements CommandExecutor {
                 return true;
 
             ConfigUtil.initialize();
+            LocaleUtil.initialize();
+
             MessageUtil.sendMessage(sender, "Config Reloaded.");
             return true;
         }
