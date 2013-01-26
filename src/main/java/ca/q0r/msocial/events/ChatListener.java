@@ -11,7 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class ChatListener implements Listener {
-    MSocial plugin;
+    private MSocial plugin;
 
     public ChatListener(MSocial instance) {
         plugin = instance;

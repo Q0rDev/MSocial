@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class AcceptCommand implements CommandExecutor {
-    MSocial plugin;
+    private MSocial plugin;
 
     public AcceptCommand(MSocial instance) {
         plugin = instance;

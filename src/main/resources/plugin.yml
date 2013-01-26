@@ -5,7 +5,7 @@ author: MiracleM4n
 authors: [MiracleM4n]
 website: http://mdev.in/
 softdepend: [mChatSuite, MChat, Spout, SpoutPlugin]
-description: PM funcionatily, Shout, Mute, etc.
+description: PM functionality, Shout, Mute, etc.
 commands:
     msocial:
         aliases: [msoc, ms]
