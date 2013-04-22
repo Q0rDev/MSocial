@@ -1,6 +1,5 @@
 package ca.q0r.msocial.commands;
 
-import ca.q0r.msocial.MSocial;
 import ca.q0r.msocial.configs.ConfigUtil;
 import ca.q0r.msocial.configs.LocaleUtil;
 import com.miraclem4n.mchat.util.MessageUtil;
