@@ -6,7 +6,6 @@ import ca.q0r.msocial.configs.LocaleUtil;
 import ca.q0r.msocial.events.ChatListener;
 import ca.q0r.msocial.events.CommandListener;
 import ca.q0r.msocial.types.ConfigType;
-import com.miraclem4n.mchat.metrics.Metrics;
 import com.miraclem4n.mchat.util.MessageUtil;
 import com.miraclem4n.mchat.util.TimerUtil;
 import org.bukkit.command.CommandExecutor;
