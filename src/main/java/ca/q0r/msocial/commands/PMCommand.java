@@ -58,7 +58,7 @@ public class PMCommand implements CommandExecutor {
         TreeMap<String, String> rMap = new TreeMap<String, String>();
 
         rMap.put("recipient", Parser.parsePlayerName(rName, recipient.getWorld().getName()));
-        rMap.put("sender", Parser.parsePlayerName(senderName, world));
+        rMap.put("sender", senderName);
         rMap.put("msg", message);
 
         player.sendMessage(API.replace(LocaleType.FORMAT_PM_SENT.getVal(), rMap, IndicatorType.LOCALE_VAR));
