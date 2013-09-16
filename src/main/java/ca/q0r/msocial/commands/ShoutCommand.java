@@ -2,7 +2,7 @@ package ca.q0r.msocial.commands;
 
 import ca.q0r.msocial.MSocial;
 import ca.q0r.msocial.types.LocaleType;
-import com.miraclem4n.mchat.MChat;
+import com.miraclem4n.mchat.api.API;
 import com.miraclem4n.mchat.api.Parser;
 import com.miraclem4n.mchat.util.MessageUtil;
 import com.miraclem4n.mchat.util.MiscUtil;
@@ -42,11 +42,11 @@ public class ShoutCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        MChat.shouting.put(sender.getName(), true);
+        API.isShouting().put(sender.getName(), true);
 
         plugin.getServer().broadcastMessage(Parser.parseChatMessage(player.getName(), player.getWorld().getName(), message));
 
-        MChat.shouting.put(sender.getName(), false);
+        API.isShouting().put(sender.getName(), false);
 
         return true;
     }
