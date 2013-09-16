@@ -7,7 +7,7 @@ import com.miraclem4n.mchat.api.API;
 import com.miraclem4n.mchat.api.Parser;
 import com.miraclem4n.mchat.types.IndicatorType;
 import com.miraclem4n.mchat.util.MessageUtil;
-import com.miraclem4n.mchat.util.MiscUtil;
+import com.miraclem4n.mchat.util.CommandUtil;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -28,7 +28,7 @@ public class ReplyCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("pmchatreply")
-                || !MiscUtil.hasCommandPerm(sender, "mchat.pm.reply"))
+                || !CommandUtil.hasCommandPerm(sender, "mchat.pm.reply"))
             return true;
 
         //TODO Allow Console's to PM
@@ -55,7 +55,7 @@ public class ReplyCommand implements CommandExecutor {
 
         Player recipient = plugin.getServer().getPlayer(rName);
 
-        if (!MiscUtil.isOnlineForCommand(sender, recipient))
+        if (!CommandUtil.isOnlineForCommand(sender, recipient))
             return true;
 
         String senderName = Parser.parsePlayerName(pName, world);

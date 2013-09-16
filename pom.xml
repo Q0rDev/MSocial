@@ -4,7 +4,7 @@
     <!-- Project information -->
     <groupId>ca.q0r</groupId>
     <artifactId>MSocial</artifactId>
-    <version>1.6.2-R0.4</version>
+    <version>1.6.2-R0.5</version>
     <name>MSocial</name>
     <url>http://mdev.in/</url>
     <description>PM funcionatily, Shout, Mute, etc.</description>
@@ -32,16 +32,6 @@
         <repository>
             <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public</url>
-            <releases>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spout-repo</id>
-            <url>http://nexus.spout.org/content/groups/public</url>
             <releases>
                 <updatePolicy>always</updatePolicy>
             </releases>

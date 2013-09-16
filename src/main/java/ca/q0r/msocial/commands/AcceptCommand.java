@@ -4,7 +4,7 @@ import ca.q0r.msocial.MSocial;
 import ca.q0r.msocial.types.LocaleType;
 import com.miraclem4n.mchat.api.Parser;
 import com.miraclem4n.mchat.util.MessageUtil;
-import com.miraclem4n.mchat.util.MiscUtil;
+import com.miraclem4n.mchat.util.CommandUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -39,7 +39,7 @@ public class AcceptCommand implements CommandExecutor {
         Player recipient = plugin.getServer().getPlayer(rName);
         String rWorld = recipient.getWorld().getName();
 
-        if (MiscUtil.isOnlineForCommand(sender, rName)) {
+        if (CommandUtil.isOnlineForCommand(sender, rName)) {
             plugin.getInvite.remove(pName);
 
             plugin.isConv.put(pName, true);

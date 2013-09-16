@@ -6,7 +6,7 @@ import com.miraclem4n.mchat.api.API;
 import com.miraclem4n.mchat.api.Parser;
 import com.miraclem4n.mchat.types.IndicatorType;
 import com.miraclem4n.mchat.util.MessageUtil;
-import com.miraclem4n.mchat.util.MiscUtil;
+import com.miraclem4n.mchat.util.CommandUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -43,7 +43,7 @@ public class DenyCommand implements CommandExecutor {
         Player recipient = plugin.getServer().getPlayer(rName);
         String rWorld = recipient.getWorld().getName();
 
-        if (MiscUtil.isOnlineForCommand(sender, recipient)) {
+        if (CommandUtil.isOnlineForCommand(sender, recipient)) {
             plugin.getInvite.remove(pName);
 
             plugin.isConv.put(pName, false);

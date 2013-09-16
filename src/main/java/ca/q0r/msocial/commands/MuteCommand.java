@@ -5,7 +5,7 @@ import ca.q0r.msocial.types.LocaleType;
 import com.miraclem4n.mchat.api.API;
 import com.miraclem4n.mchat.types.IndicatorType;
 import com.miraclem4n.mchat.util.MessageUtil;
-import com.miraclem4n.mchat.util.MiscUtil;
+import com.miraclem4n.mchat.util.CommandUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,7 +22,7 @@ public class MuteCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("mchatmute")
-                || !MiscUtil.hasCommandPerm(sender, "mchat.mute"))
+                || !CommandUtil.hasCommandPerm(sender, "mchat.mute"))
             return true;
 
         if (args.length < 1)

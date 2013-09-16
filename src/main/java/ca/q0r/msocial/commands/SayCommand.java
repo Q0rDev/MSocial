@@ -4,7 +4,7 @@ import ca.q0r.msocial.MSocial;
 import ca.q0r.msocial.types.LocaleType;
 import com.miraclem4n.mchat.api.API;
 import com.miraclem4n.mchat.types.IndicatorType;
-import com.miraclem4n.mchat.util.MiscUtil;
+import com.miraclem4n.mchat.util.CommandUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,7 +18,7 @@ public class SayCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("mchatsay")
-                || !MiscUtil.hasCommandPerm(sender, "mchat.say"))
+                || !CommandUtil.hasCommandPerm(sender, "mchat.say"))
             return true;
 
         if (args.length > 0) {

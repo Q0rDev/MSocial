@@ -4,8 +4,8 @@ import ca.q0r.msocial.MSocial;
 import ca.q0r.msocial.types.LocaleType;
 import com.miraclem4n.mchat.api.API;
 import com.miraclem4n.mchat.api.Parser;
+import com.miraclem4n.mchat.util.CommandUtil;
 import com.miraclem4n.mchat.util.MessageUtil;
-import com.miraclem4n.mchat.util.MiscUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,7 +20,7 @@ public class ShoutCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("mchatshout")
-                || !MiscUtil.hasCommandPerm(sender, "mchat.shout"))
+                || !CommandUtil.hasCommandPerm(sender, "mchat.shout"))
             return true;
 
         String message = "";

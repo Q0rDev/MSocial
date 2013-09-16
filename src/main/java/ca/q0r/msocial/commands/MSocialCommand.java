@@ -2,8 +2,8 @@ package ca.q0r.msocial.commands;
 
 import ca.q0r.msocial.configs.ConfigUtil;
 import ca.q0r.msocial.configs.LocaleUtil;
+import com.miraclem4n.mchat.util.CommandUtil;
 import com.miraclem4n.mchat.util.MessageUtil;
-import com.miraclem4n.mchat.util.MiscUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,7 +20,7 @@ public class MSocialCommand implements CommandExecutor {
 
         if (args[0].equalsIgnoreCase("reload")
                 || args[0].equalsIgnoreCase("r")) {
-            if (!MiscUtil.hasCommandPerm(sender, "msocial.reload"))
+            if (!CommandUtil.hasCommandPerm(sender, "msocial.reload"))
                 return true;
 
             ConfigUtil.initialize();

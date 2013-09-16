@@ -6,7 +6,7 @@ import com.miraclem4n.mchat.api.API;
 import com.miraclem4n.mchat.api.Parser;
 import com.miraclem4n.mchat.types.IndicatorType;
 import com.miraclem4n.mchat.util.MessageUtil;
-import com.miraclem4n.mchat.util.MiscUtil;
+import com.miraclem4n.mchat.util.CommandUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,7 +21,7 @@ public class InviteCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("pmchatinvite")
-                || !MiscUtil.hasCommandPerm(sender, "mchat.pm.invite"))
+                || !CommandUtil.hasCommandPerm(sender, "mchat.pm.invite"))
             return true;
 
         //TODO Allow Console's to PM
@@ -41,7 +41,7 @@ public class InviteCommand implements CommandExecutor {
         String rName = recipient.getName();
         String rWorld = recipient.getWorld().getName();
 
-        if (!MiscUtil.isOnlineForCommand(sender, recipient))
+        if (!CommandUtil.isOnlineForCommand(sender, recipient))
             return true;
 
         if (plugin.getInvite.get(rName) == null) {
