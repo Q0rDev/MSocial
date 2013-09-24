@@ -108,8 +108,9 @@ public class MSocial extends JavaPlugin {
     void setupPlugins() {
         spoutB = setupPlugin("Spout");
 
-        if (!ConfigType.OPTION_SPOUT.getBoolean())
+        if (!ConfigType.OPTION_SPOUT.getBoolean()) {
             spoutB = false;
+        }
     }
 
     void setupCommands() {
@@ -126,8 +127,9 @@ public class MSocial extends JavaPlugin {
     }
 
     void regCommands(String command, CommandExecutor executor) {
-        if (getCommand(command) != null)
+        if (getCommand(command) != null) {
             getCommand(command).setExecutor(executor);
+        }
     }
 
     void setupEvents() {

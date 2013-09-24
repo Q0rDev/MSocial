@@ -22,17 +22,20 @@ public class MuteCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("mchatmute")
-                || !CommandUtil.hasCommandPerm(sender, "mchat.mute"))
+                || !CommandUtil.hasCommandPerm(sender, "mchat.mute")) {
             return true;
+        }
 
-        if (args.length < 1)
+        if (args.length < 1) {
             return false;
+        }
 
         String target = args[0];
         Player player = plugin.getServer().getPlayer(args[0]);
 
-        if (player != null)
+        if (player != null) {
             target = player.getName();
+        }
 
         TreeMap<String, String> rMap = new TreeMap<String, String>();
 

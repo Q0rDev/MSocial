@@ -12,16 +12,19 @@ public class MSocialCommand implements CommandExecutor {
     public MSocialCommand() { }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!command.getName().equalsIgnoreCase("msocial"))
+        if (!command.getName().equalsIgnoreCase("msocial")) {
             return true;
+        }
 
-        if (args.length == 0)
+        if (args.length == 0) {
             return false;
+        }
 
         if (args[0].equalsIgnoreCase("reload")
                 || args[0].equalsIgnoreCase("r")) {
-            if (!CommandUtil.hasCommandPerm(sender, "msocial.reload"))
+            if (!CommandUtil.hasCommandPerm(sender, "msocial.reload")) {
                 return true;
+            }
 
             ConfigUtil.initialize();
             LocaleUtil.initialize();

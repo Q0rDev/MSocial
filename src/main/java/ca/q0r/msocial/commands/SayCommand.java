@@ -18,14 +18,16 @@ public class SayCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("mchatsay")
-                || !CommandUtil.hasCommandPerm(sender, "mchat.say"))
+                || !CommandUtil.hasCommandPerm(sender, "mchat.say")) {
             return true;
+        }
 
         if (args.length > 0) {
             String message = "";
 
-            for (String arg : args)
+            for (String arg : args) {
                 message += " " + arg;
+            }
 
             message = message.trim();
 

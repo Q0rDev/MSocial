@@ -20,13 +20,15 @@ public class ShoutCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("mchatshout")
-                || !CommandUtil.hasCommandPerm(sender, "mchat.shout"))
+                || !CommandUtil.hasCommandPerm(sender, "mchat.shout")) {
             return true;
+        }
 
         String message = "";
 
-        for (String arg : args)
+        for (String arg : args) {
             message += " " + arg;
+        }
 
         message = message.trim();
 

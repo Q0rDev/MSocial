@@ -18,8 +18,9 @@ public class LeaveCommand implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!command.getName().equalsIgnoreCase("pmchatleave"))
+        if (!command.getName().equalsIgnoreCase("pmchatleave")) {
             return true;
+        }
 
         //TODO Allow Console's to PM
         if (!(sender instanceof Player)) {
@@ -35,7 +36,6 @@ public class LeaveCommand implements CommandExecutor {
         Boolean isConv = plugin.isConv.get(pName);
 
         if (rName == null || isConv == null) {
-
             plugin.isConv.put(pName, false);
             plugin.chatPartner.remove(pName);
 
@@ -47,16 +47,18 @@ public class LeaveCommand implements CommandExecutor {
 
             Player recipient = plugin.getServer().getPlayer(rName);
 
-            if (recipient != null)
+            if (recipient != null) {
                 MessageUtil.sendMessage(recipient, API.replace(LocaleType.MESSAGE_CONVERSATION_ENDED.getVal(), "player", pName, IndicatorType.LOCALE_VAR));
+            }
 
             plugin.isConv.put(pName, false);
             plugin.isConv.put(rName, false);
 
             plugin.chatPartner.remove(rName);
             plugin.chatPartner.remove(pName);
-        } else
+        } else {
             MessageUtil.sendMessage(player, LocaleType.MESSAGE_CONVERSATION_NOT_IN.getVal());
+        }
 
         return true;
     }

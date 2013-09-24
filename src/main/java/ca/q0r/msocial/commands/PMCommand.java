@@ -28,8 +28,9 @@ public class PMCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("pmchat")
-                || !CommandUtil.hasCommandPerm(sender, "mchat.pm.pm"))
+                || !CommandUtil.hasCommandPerm(sender, "mchat.pm.pm")) {
             return true;
+        }
 
         //TODO Allow Console's to PM
         if (!(sender instanceof Player)) {
@@ -41,15 +42,19 @@ public class PMCommand implements CommandExecutor {
         String pName = player.getName();
         String world = player.getWorld().getName();
 
-        if (args.length < 2)
+        if (args.length < 2) {
             return false;
+        }
 
         message = "";
-        for (int i = 1; i < args.length; ++i)
-            message += " " + args[i];
 
-        if (!CommandUtil.isOnlineForCommand(sender, args[0]))
+        for (int i = 1; i < args.length; ++i) {
+            message += " " + args[i];
+        }
+
+        if (!CommandUtil.isOnlineForCommand(sender, args[0])) {
             return true;
+        }
 
         Player recipient = plugin.getServer().getPlayer(args[0]);
         String rName = recipient.getName();

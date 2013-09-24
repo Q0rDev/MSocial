@@ -72,8 +72,9 @@ public class LocaleUtil {
     }
 
     public static Boolean save() {
-        if (!changed)
+        if (!changed) {
             return false;
+        }
 
         try {
             config.save(file);
@@ -89,7 +90,8 @@ public class LocaleUtil {
     }
 
     private static void checkOption(String option, Object defValue) {
-        if (!config.isSet(option))
+        if (!config.isSet(option)) {
             set(option, defValue);
+        }
     }
 }

@@ -20,8 +20,9 @@ public class DenyCommand implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!command.getName().equalsIgnoreCase("pmchatdeny"))
+        if (!command.getName().equalsIgnoreCase("pmchatdeny")) {
             return true;
+        }
 
         //TODO Allow Console's to PM
         if (!(sender instanceof Player)) {

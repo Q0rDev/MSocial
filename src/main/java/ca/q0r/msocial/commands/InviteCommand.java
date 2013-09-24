@@ -21,8 +21,9 @@ public class InviteCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("pmchatinvite")
-                || !CommandUtil.hasCommandPerm(sender, "mchat.pm.invite"))
+                || !CommandUtil.hasCommandPerm(sender, "mchat.pm.invite")) {
             return true;
+        }
 
         //TODO Allow Console's to PM
         if (!(sender instanceof Player)) {
@@ -34,23 +35,26 @@ public class InviteCommand implements CommandExecutor {
         String pName = player.getName();
         String pWorld = player.getWorld().getName();
 
-        if (args.length < 1)
+        if (args.length < 1) {
             return false;
+        }
 
         Player recipient = plugin.getServer().getPlayer(args[0]);
         String rName = recipient.getName();
         String rWorld = recipient.getWorld().getName();
 
-        if (!CommandUtil.isOnlineForCommand(sender, recipient))
+        if (!CommandUtil.isOnlineForCommand(sender, recipient)) {
             return true;
+        }
 
         if (plugin.getInvite.get(rName) == null) {
             plugin.getInvite.put(rName, pName);
 
             MessageUtil.sendMessage(player, API.replace(LocaleType.MESSAGE_CONVERSATION_INVITE_SENT.getVal(), "player", Parser.parsePlayerName(rName, rWorld), IndicatorType.LOCALE_VAR));
             MessageUtil.sendMessage(recipient, API.replace(LocaleType.MESSAGE_CONVERSATION_INVITED.getVal(), "player", Parser.parsePlayerName(pName, pWorld), IndicatorType.LOCALE_VAR));
-        } else
+        } else {
             MessageUtil.sendMessage(player, API.replace(LocaleType.MESSAGE_CONVERSATION_HAS_REQUEST.getVal(), "player", Parser.parsePlayerName(rName, rWorld), IndicatorType.LOCALE_VAR));
+        }
 
         return true;
     }

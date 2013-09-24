@@ -20,8 +20,9 @@ public class ChatListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOW)
     public void onPlayerChat(AsyncPlayerChatEvent event) {
-        if (event.isCancelled())
+        if (event.isCancelled()) {
             return;
+        }
 
         Player player = event.getPlayer();
         String pName = player.getName();
@@ -33,12 +34,12 @@ public class ChatListener implements Listener {
         if (plugin.isMuted.get(pName) != null
                 && plugin.isMuted.get(pName)) {
             event.setCancelled(true);
-
             return;
         }
 
-        if (plugin.isConv.get(pName) == null)
+        if (plugin.isConv.get(pName) == null) {
             plugin.isConv.put(pName, false);
+        }
 
         if (plugin.isConv.get(pName)) {
             Player recipient = plugin.getServer().getPlayer(plugin.chatPartner.get(pName));

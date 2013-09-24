@@ -18,13 +18,15 @@ public class AcceptCommand implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!command.getName().equalsIgnoreCase("pmchataccept"))
+        if (!command.getName().equalsIgnoreCase("pmchataccept")) {
             return true;
+        }
 
         if (!(sender instanceof Player)) {
             MessageUtil.sendMessage(sender, "Console's can't use conversation commands.");
             return true;
         }
+
         Player player = (Player) sender;
         String pName = player.getName();
         String pWorld = player.getWorld().getName();

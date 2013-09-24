@@ -28,8 +28,9 @@ public class ReplyCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("pmchatreply")
-                || !CommandUtil.hasCommandPerm(sender, "mchat.pm.reply"))
+                || !CommandUtil.hasCommandPerm(sender, "mchat.pm.reply")) {
             return true;
+        }
 
         //TODO Allow Console's to PM
         if (!(sender instanceof Player)) {
@@ -43,8 +44,9 @@ public class ReplyCommand implements CommandExecutor {
 
         message = "";
 
-        for (String arg : args)
+        for (String arg : args) {
             message += " " + arg;
+        }
 
         String rName = plugin.lastPMd.get(pName);
 
@@ -55,8 +57,9 @@ public class ReplyCommand implements CommandExecutor {
 
         Player recipient = plugin.getServer().getPlayer(rName);
 
-        if (!CommandUtil.isOnlineForCommand(sender, recipient))
+        if (!CommandUtil.isOnlineForCommand(sender, recipient)) {
             return true;
+        }
 
         String senderName = Parser.parsePlayerName(pName, world);
 
