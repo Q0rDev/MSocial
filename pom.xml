@@ -4,7 +4,7 @@
     <!-- Project information -->
     <groupId>ca.q0r</groupId>
     <artifactId>MSocial</artifactId>
-    <version>1.6.2-R0.5</version>
+    <version>1.6.4-R0.1</version>
     <name>MSocial</name>
     <url>http://mdev.in/</url>
     <description>PM funcionatily, Shout, Mute, etc.</description>
@@ -90,14 +90,14 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.6.2-R1.0</version>
+            <version>1.6.4-R0.1-SNAPSHOT</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>ca.q0r</groupId>
             <artifactId>MChat</artifactId>
-            <version>1.6.2-R0.6</version>
+            <version>1.6.4-R0.1</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>

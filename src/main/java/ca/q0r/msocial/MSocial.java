@@ -7,7 +7,7 @@ import ca.q0r.msocial.events.ChatListener;
 import ca.q0r.msocial.events.CommandListener;
 import ca.q0r.msocial.types.ConfigType;
 import com.miraclem4n.mchat.util.MessageUtil;
-import com.miraclem4n.mchat.util.TimerUtil;
+import com.miraclem4n.mchat.util.Timer;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -39,7 +39,18 @@ public class MSocial extends JavaPlugin {
 
         try {
             // Initialize and Start the Timer
-            TimerUtil timer = new TimerUtil();
+            Timer timer = new Timer();
+
+            // Initialize Metrics
+            /*getServer().getScheduler().runTaskLater(this, new BukkitRunnable(){
+				@Override
+				public void run() {
+					try {
+						Metrics metrics = new Metrics(Bukkit.getPluginManager().getPlugin("MSocial"));
+			            metrics.start();
+			        } catch (IOException ignored) {}
+				}
+			}, 200);*/
 
             initializeConfigs();
 
@@ -64,7 +75,7 @@ public class MSocial extends JavaPlugin {
     public void onDisable() {
         try {
             // Initialize and Start the Timer
-            TimerUtil timer = new TimerUtil();
+            Timer timer = new Timer();
 
             getServer().getScheduler().cancelTasks(this);
 
