@@ -1,11 +1,10 @@
 package ca.q0r.msocial.commands;
 
+import ca.q0r.mchat.api.Parser;
+import ca.q0r.mchat.util.CommandUtil;
+import ca.q0r.mchat.util.MessageUtil;
 import ca.q0r.msocial.MSocial;
 import ca.q0r.msocial.types.LocaleType;
-import com.miraclem4n.mchat.api.API;
-import com.miraclem4n.mchat.api.Parser;
-import com.miraclem4n.mchat.util.CommandUtil;
-import com.miraclem4n.mchat.util.MessageUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -44,11 +43,11 @@ public class ShoutCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        API.isShouting().put(sender.getName(), true);
+        MSocial.isShouting.put(sender.getName(), true);
 
         plugin.getServer().broadcastMessage(Parser.parseChatMessage(player.getName(), player.getWorld().getName(), message));
 
-        API.isShouting().put(sender.getName(), false);
+        MSocial.isShouting.put(sender.getName(), false);
 
         return true;
     }

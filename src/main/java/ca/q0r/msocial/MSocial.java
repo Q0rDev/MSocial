@@ -1,13 +1,15 @@
 package ca.q0r.msocial;
 
+import ca.q0r.mchat.util.MessageUtil;
+import ca.q0r.mchat.util.Timer;
 import ca.q0r.msocial.commands.*;
 import ca.q0r.msocial.configs.ConfigUtil;
 import ca.q0r.msocial.configs.LocaleUtil;
 import ca.q0r.msocial.events.ChatListener;
 import ca.q0r.msocial.events.CommandListener;
 import ca.q0r.msocial.types.ConfigType;
-import com.miraclem4n.mchat.util.MessageUtil;
-import com.miraclem4n.mchat.util.Timer;
+import ca.q0r.msocial.types.LocaleType;
+import ca.q0r.msocial.vars.MSocialVars;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -24,7 +26,11 @@ public class MSocial extends JavaPlugin {
     // Spout
     public Boolean spoutB = false;
 
+    // ShoutFormat
+    public static String shoutFormat = LocaleType.FORMAT_SHOUT.getRaw();
+
     // Maps
+    public static HashMap<String, Boolean> isShouting = new HashMap<String, Boolean>();
     public HashMap<String, Boolean> isMuted = new HashMap<String, Boolean>();
     public HashMap<String, Boolean> isConv = new HashMap<String, Boolean>();
 
@@ -59,6 +65,8 @@ public class MSocial extends JavaPlugin {
             setupCommands();
 
             setupEvents();
+
+            setupVars();
 
             // Stop the Timer
             timer.stop();
@@ -135,6 +143,10 @@ public class MSocial extends JavaPlugin {
     void setupEvents() {
         pm.registerEvents(new ChatListener(this), this);
         pm.registerEvents(new CommandListener(), this);
+    }
+
+    void setupVars() {
+        MSocialVars.addVars();
     }
 
     public void initializeConfigs() {

@@ -1,10 +1,10 @@
 package ca.q0r.msocial.commands;
 
+import ca.q0r.mchat.api.Parser;
+import ca.q0r.mchat.util.CommandUtil;
+import ca.q0r.mchat.util.MessageUtil;
 import ca.q0r.msocial.MSocial;
 import ca.q0r.msocial.types.LocaleType;
-import com.miraclem4n.mchat.api.Parser;
-import com.miraclem4n.mchat.util.MessageUtil;
-import com.miraclem4n.mchat.util.CommandUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

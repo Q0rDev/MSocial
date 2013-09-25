@@ -1,9 +1,9 @@
 package ca.q0r.msocial.events;
 
+import ca.q0r.mchat.api.Parser;
+import ca.q0r.mchat.util.MessageUtil;
 import ca.q0r.msocial.MSocial;
 import ca.q0r.msocial.types.LocaleType;
-import com.miraclem4n.mchat.api.Parser;
-import com.miraclem4n.mchat.util.MessageUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
