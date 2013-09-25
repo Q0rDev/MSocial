@@ -23,7 +23,7 @@ public class MSocialVars {
 
                 if (MSocial.isShouting.get(pName) != null
                         && MSocial.isShouting.get(pName)) {
-                    dType = MSocial.shoutFormat;
+                    dType = ca.q0r.msocial.types.LocaleType.FORMAT_SHOUT.getRaw();
                 } else if (ConfigType.MCHAT_CHAT_DISTANCE.getDouble() > 0) {
                     dType = LocaleType.FORMAT_LOCAL.getVal();
                 }

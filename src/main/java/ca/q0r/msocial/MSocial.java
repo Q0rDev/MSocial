@@ -26,9 +26,6 @@ public class MSocial extends JavaPlugin {
     // Spout
     public Boolean spoutB = false;
 
-    // ShoutFormat
-    public static String shoutFormat = LocaleType.FORMAT_SHOUT.getRaw();
-
     // Maps
     public static HashMap<String, Boolean> isShouting = new HashMap<String, Boolean>();
     public HashMap<String, Boolean> isMuted = new HashMap<String, Boolean>();

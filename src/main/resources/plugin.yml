@@ -10,11 +10,6 @@ commands:
     msocial:
         aliases: [msoc, ms]
         ~permissions: msocial.reload
-    mchatme:
-        usage: |
-            /<command> *Message* - Displays message.
-        aliases: [mme]
-        ~permissions: mchat.group.*
     mchatsay:
         usage: |
             /<command> *Message* - Broadcast a message.
