@@ -3,12 +3,10 @@ package ca.q0r.msocial;
 import ca.q0r.mchat.util.MessageUtil;
 import ca.q0r.mchat.util.Timer;
 import ca.q0r.msocial.commands.*;
-import ca.q0r.msocial.configs.ConfigUtil;
-import ca.q0r.msocial.configs.LocaleUtil;
+import ca.q0r.msocial.yml.YmlManager;
 import ca.q0r.msocial.events.ChatListener;
 import ca.q0r.msocial.events.CommandListener;
-import ca.q0r.msocial.types.ConfigType;
-import ca.q0r.msocial.types.LocaleType;
+import ca.q0r.msocial.yml.config.ConfigType;
 import ca.q0r.msocial.vars.MSocialVars;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.Plugin;
@@ -55,7 +53,8 @@ public class MSocial extends JavaPlugin {
 				}
 			}, 200);*/
 
-            initializeConfigs();
+            // Load Yml
+            YmlManager.initialize();
 
             setupPlugins();
 
@@ -84,7 +83,8 @@ public class MSocial extends JavaPlugin {
 
             getServer().getScheduler().cancelTasks(this);
 
-            unloadConfigs();
+            // Unload Yml
+            YmlManager.unload();
 
             // Stop the Timer
             timer.stop();
@@ -144,15 +144,5 @@ public class MSocial extends JavaPlugin {
 
     void setupVars() {
         MSocialVars.addVars();
-    }
-
-    public void initializeConfigs() {
-        ConfigUtil.initialize();
-        LocaleUtil.initialize();
-    }
-
-    public void unloadConfigs() {
-        ConfigUtil.dispose();
-        LocaleUtil.dispose();
     }
 }

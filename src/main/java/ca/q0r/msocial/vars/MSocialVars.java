@@ -1,9 +1,9 @@
 package ca.q0r.msocial.vars;
 
-import ca.q0r.mchat.configs.config.ConfigType;
-import ca.q0r.mchat.configs.locale.LocaleType;
 import ca.q0r.mchat.variables.Var;
 import ca.q0r.mchat.variables.VariableManager;
+import ca.q0r.mchat.yml.config.ConfigType;
+import ca.q0r.mchat.yml.locale.LocaleType;
 import ca.q0r.msocial.MSocial;
 import org.bukkit.entity.Player;
 
@@ -23,7 +23,7 @@ public class MSocialVars {
 
                 if (MSocial.isShouting.get(pName) != null
                         && MSocial.isShouting.get(pName)) {
-                    dType = ca.q0r.msocial.types.LocaleType.FORMAT_SHOUT.getRaw();
+                    dType = ca.q0r.msocial.yml.locale.LocaleType.FORMAT_SHOUT.getRaw();
                 } else if (ConfigType.MCHAT_CHAT_DISTANCE.getDouble() > 0) {
                     dType = LocaleType.FORMAT_LOCAL.getVal();
                 }

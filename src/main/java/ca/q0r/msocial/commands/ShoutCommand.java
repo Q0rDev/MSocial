@@ -4,7 +4,7 @@ import ca.q0r.mchat.api.Parser;
 import ca.q0r.mchat.util.CommandUtil;
 import ca.q0r.mchat.util.MessageUtil;
 import ca.q0r.msocial.MSocial;
-import ca.q0r.msocial.types.LocaleType;
+import ca.q0r.msocial.yml.locale.LocaleType;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
