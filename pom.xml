@@ -4,9 +4,9 @@
     <!-- Project information -->
     <groupId>ca.q0r</groupId>
     <artifactId>MSocial</artifactId>
-    <version>1.6.4-R0.6</version>
+    <version>1.6.4-R0.7</version>
     <name>MSocial</name>
-    <url>http://mdev.in/</url>
+    <url>http://q0r.ca/</url>
     <description>PM funcionatily, Shout, Mute, etc.</description>
 
     <properties>
