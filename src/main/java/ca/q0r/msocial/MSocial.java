@@ -1,5 +1,6 @@
 package ca.q0r.msocial;
 
+import ca.q0r.mchat.metrics.Metrics;
 import ca.q0r.mchat.util.MessageUtil;
 import ca.q0r.mchat.util.Timer;
 import ca.q0r.msocial.commands.*;
@@ -8,11 +9,13 @@ import ca.q0r.msocial.events.ChatListener;
 import ca.q0r.msocial.events.CommandListener;
 import ca.q0r.msocial.yml.config.ConfigType;
 import ca.q0r.msocial.vars.MSocialVars;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 
@@ -43,15 +46,15 @@ public class MSocial extends JavaPlugin {
             Timer timer = new Timer();
 
             // Initialize Metrics
-            /*getServer().getScheduler().runTaskLater(this, new BukkitRunnable(){
-				@Override
-				public void run() {
-					try {
-						Metrics metrics = new Metrics(Bukkit.getPluginManager().getPlugin("MSocial"));
-			            metrics.start();
-			        } catch (IOException ignored) {}
-				}
-			}, 200);*/
+            getServer().getScheduler().runTaskLater(this, new BukkitRunnable(){
+                @Override
+                public void run() {
+                    try {
+                        Metrics metrics = new Metrics(Bukkit.getPluginManager().getPlugin("MSocial"));
+                        metrics.start();
+                    } catch (Exception ignored) {}
+                }
+            }, 200);
 
             // Load Yml
             YmlManager.initialize();
