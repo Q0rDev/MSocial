@@ -38,8 +38,6 @@ public class ConfigYml extends Yml {
     }
 
     public void loadDefaults() {
-        checkOption("option.spoutPM", false);
-
         loadAliases();
 
         checkOption("aliases.mchatsay", sayAliases);

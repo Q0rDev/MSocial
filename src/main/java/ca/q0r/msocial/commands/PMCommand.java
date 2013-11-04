@@ -6,14 +6,11 @@ import ca.q0r.mchat.types.IndicatorType;
 import ca.q0r.mchat.util.CommandUtil;
 import ca.q0r.mchat.util.MessageUtil;
 import ca.q0r.msocial.MSocial;
-import ca.q0r.msocial.yml.config.ConfigType;
 import ca.q0r.msocial.yml.locale.LocaleType;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.getspout.spoutapi.player.SpoutPlayer;
 
 import java.util.TreeMap;
 
@@ -68,50 +65,11 @@ public class PMCommand implements CommandExecutor {
 
         player.sendMessage(API.replace(LocaleType.FORMAT_PM_SENT.getVal(), rMap, IndicatorType.LOCALE_VAR));
 
-        if (plugin.spoutB) {
-            sendSpoutMessage(player, recipient, message);
-            return true;
-        }
-
         plugin.lastPMd.put(rName, pName);
 
         recipient.sendMessage(API.replace(LocaleType.FORMAT_PM_RECEIVED.getVal(), rMap, IndicatorType.LOCALE_VAR));
         MessageUtil.log(API.replace(LocaleType.FORMAT_PM_RECEIVED.getVal(), rMap, IndicatorType.LOCALE_VAR));
 
         return true;
-    }
-
-    void sendSpoutMessage(Player player, Player recipient, final String message) {
-        if (ConfigType.OPTION_SPOUT.getBoolean()) {
-            final SpoutPlayer sRecipient = (SpoutPlayer) recipient;
-
-            if (sRecipient.isSpoutCraftEnabled()) {
-                plugin.lastPMd.put(recipient.getName(), player.getName());
-
-                sRecipient.sendNotification(LocaleType.MESSAGE_SPOUT_PM.getVal(), player.getName(), Material.PAPER);
-
-                plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-                    public void run() {
-                        for (int i = 0; i < ((message.length() / 40) + 1); i++) {
-                            sendRunnableNotification(sRecipient, formatPM(message, ((40 * i) + 1), ((i * 40) + 20)), formatPM(message, ((i * 40) + 21), ((i * 40) + 40)), i);
-                        }
-                    }
-                }, 2 * 20);
-
-            }
-        }
-    }
-
-    void sendRunnableNotification(final SpoutPlayer recipient, final String messageA, final String messageB, Integer delay) {
-        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-            public void run() {
-                recipient.sendNotification(messageA, messageB, Material.PAPER);
-            }
-        }, 40 * delay);
-    }
-
-    String formatPM(String message, Integer start, Integer finish) {
-        while (message.length() <= finish) message += " ";
-        return message.substring(start, finish);
     }
 }

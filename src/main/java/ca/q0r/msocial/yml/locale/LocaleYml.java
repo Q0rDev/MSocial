@@ -34,7 +34,6 @@ public class LocaleYml extends Yml {
         checkOption("message.convo.started", "You have started a Convo with &5'&4%player&5'&4.");
         checkOption("message.shout.noInput", "You can't shout nothing!");
         checkOption("message.general.mute", "Target '%player' successfully %muted. To %mute use this command again.");
-        checkOption("message.spout.pmFrom", "[PMChat] From:");
         checkOption("message.pm.noPm", "No one has yet PM'd you.");
 
         save();

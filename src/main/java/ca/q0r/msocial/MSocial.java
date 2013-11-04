@@ -24,9 +24,6 @@ public class MSocial extends JavaPlugin {
     public PluginManager pm;
     public PluginDescriptionFile pdfFile;
 
-    // Spout
-    public Boolean spoutB = false;
-
     // Maps
     public static HashMap<String, Boolean> isShouting = new HashMap<String, Boolean>();
     public HashMap<String, Boolean> isMuted = new HashMap<String, Boolean>();
@@ -58,8 +55,6 @@ public class MSocial extends JavaPlugin {
 
             // Load Yml
             YmlManager.initialize();
-
-            setupPlugins();
 
             setupCommands();
 
@@ -99,25 +94,6 @@ public class MSocial extends JavaPlugin {
         } catch(NoClassDefFoundError ignored) {
             System.err.println("[" + pdfFile.getName() + "] MChat not found disabling!");
             System.out.println("[" + pdfFile.getName() + "] " + pdfFile.getName() + " v" + pdfFile.getVersion() + " is disabled!");
-        }
-    }
-
-    Boolean setupPlugin(String pluginName) {
-        Plugin plugin = pm.getPlugin(pluginName);
-
-        if (plugin != null) {
-            MessageUtil.log("[" + pdfFile.getName() + "] <Plugin> " + plugin.getDescription().getName() + " v" + plugin.getDescription().getVersion() + " hooked!.");
-            return true;
-        }
-
-        return false;
-    }
-
-    void setupPlugins() {
-        spoutB = setupPlugin("Spout");
-
-        if (!ConfigType.OPTION_SPOUT.getBoolean()) {
-            spoutB = false;
         }
     }
 

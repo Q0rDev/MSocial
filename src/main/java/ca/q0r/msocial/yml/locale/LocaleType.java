@@ -24,8 +24,7 @@ public enum LocaleType {
     MESSAGE_CONVERSATION_STARTED("message.convo.started"),
     MESSAGE_MUTE_MISC("message.general.mute"),
     MESSAGE_PM_NO_PM("message.pm.noPm"),
-    MESSAGE_SHOUT_NO_INPUT("message.shout.noInput"),
-    MESSAGE_SPOUT_PM("message.spout.pmFrom");
+    MESSAGE_SHOUT_NO_INPUT("message.shout.noInput");
 
     private final String option;
 
