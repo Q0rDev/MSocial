@@ -4,8 +4,6 @@ import ca.q0r.mchat.util.CommandUtil;
 import ca.q0r.mchat.util.MessageUtil;
 import ca.q0r.msocial.yml.YmlManager;
 import ca.q0r.msocial.yml.YmlType;
-import ca.q0r.msocial.yml.config.ConfigYml;
-import ca.q0r.msocial.yml.locale.LocaleYml;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
