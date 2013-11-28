@@ -13,7 +13,7 @@ public class MSocialVars {
     }
 
     private static class DistanceType extends Var {
-        @Var.Keys( keys = {"distancetype","dtype"} )
+        @Var.Keys(keys = {"distancetype", "dtype"})
         public Object getValue(Object obj) {
             String dType = "";
 
