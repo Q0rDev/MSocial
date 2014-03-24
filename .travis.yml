@@ -3,7 +3,7 @@ language: java
 jdk: oraclejdk7
 
 # Compile and package JAR and set build properties.
-install: mvn package -Dbuild.number=b$TRAVIS_BUILD_NUMBERtrvs
+install: mvn package -DbuildNumber=b${TRAVIS_BUILD_NUMBER}trvs
 after_success:
   # Get files for use with build, namely the custom Maven settings.xml.
   - "git clone https://github.com/Q0rDev/travis-ci-resources.git target/travis"
@@ -19,5 +19,5 @@ notifications:
 
 env:
   global:
-    - secure: "t+ttSHR4pZOue3ofhQXYeMj0v/bbJNq6nH73aOXuNBiLBJ1Xzhc2Hhnxysz78q5rYCiNdQffY8QkPMDmTxv3vLFsHiFOJbrsjygOB19xU6sl9ewLFy9izf6ND/Szn4+KU7dgEhVSRTs0dxo2Xzp0qzGowng4NoEENgTOwfCEOJg="
-    - secure: "kBNBCnuYG9PdoG47uWXYNgeEVryJ83Zy6VLcjvd8eTZ+2zlmYQpgihbkiCGS72+YQzC5V9onp6jdZ1uGLOFFLX2qJk0gjjH8zkOVm1facyvpAQyrbc3OAZwUMKI2iTm30FcALqhwUlj9z4tIFKOgANRVpJsMA1w2nwZOilAsCIA="
+    - secure: "Gq8N/sDcUjSjVBmpoLcStE/7urrKBpvRm26NzapPyLindRd/floR5ss3gBGjSjl7qmL8W7AS4G1ntmuKUFum4SLeDlHL6Ie+CIEb2AaQWSHxr+9UEaNotsc5A9TuMkgXgbnD4rlRXFbtmkhSS00w4K/2OPkZOPcmeBjimP7/P80="
+    - secure: "qeop7flJXROsQgITtn5GpgjP02MwpV2C8+5kDqMoIsSKV9TtirJ+nGM9xqxMIbpbKf/ieoMBVZmDzjBOIzEWdiVD5/qYXLp2wVOPNE/JKVhypO/nvZ06o54z76U3CeyDoByhqndkJGVbu4QfagXdRbi4T58RFDydHo3JfvKdAIU="
