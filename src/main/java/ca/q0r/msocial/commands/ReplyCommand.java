@@ -60,7 +60,7 @@ public class ReplyCommand implements CommandExecutor {
 
         String senderName = Parser.parsePlayerName(pName, world);
 
-        TreeMap<String, String> rMap = new TreeMap<String, String>();
+        TreeMap<String, String> rMap = new TreeMap<>();
 
         rMap.put("recipient", Parser.parsePlayerName(rName, recipient.getWorld().getName()));
         rMap.put("sender", senderName);

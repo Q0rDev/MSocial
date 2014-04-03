@@ -19,20 +19,20 @@ public class ConfigYml extends Yml {
     private ArrayList<String> denyAliases;
     private ArrayList<String> leaveAliases;
 
-    private HashMap<String, List<String>> aliasMap = new HashMap<String, List<String>>();
+    private HashMap<String, List<String>> aliasMap = new HashMap<>();
 
     public ConfigYml() {
         super(new File("plugins/MSocial/config.yml"), "MSocial Config");
 
-        sayAliases = new ArrayList<String>();
-        shoutAliases = new ArrayList<String>();
-        muteAliases = new ArrayList<String>();
-        pmAliases = new ArrayList<String>();
-        replyAliases = new ArrayList<String>();
-        inviteAliases = new ArrayList<String>();
-        acceptAliases = new ArrayList<String>();
-        denyAliases = new ArrayList<String>();
-        leaveAliases = new ArrayList<String>();
+        sayAliases = new ArrayList<>();
+        shoutAliases = new ArrayList<>();
+        muteAliases = new ArrayList<>();
+        pmAliases = new ArrayList<>();
+        replyAliases = new ArrayList<>();
+        inviteAliases = new ArrayList<>();
+        acceptAliases = new ArrayList<>();
+        denyAliases = new ArrayList<>();
+        leaveAliases = new ArrayList<>();
 
         loadDefaults();
     }

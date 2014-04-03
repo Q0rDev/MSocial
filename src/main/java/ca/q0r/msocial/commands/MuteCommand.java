@@ -37,7 +37,7 @@ public class MuteCommand implements CommandExecutor {
             target = player.getName();
         }
 
-        TreeMap<String, String> rMap = new TreeMap<String, String>();
+        TreeMap<String, String> rMap = new TreeMap<>();
 
         rMap.put("player", target);
 

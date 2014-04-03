@@ -57,7 +57,7 @@ public class PMCommand implements CommandExecutor {
         String rName = recipient.getName();
         String senderName = Parser.parsePlayerName(pName, world);
 
-        TreeMap<String, String> rMap = new TreeMap<String, String>();
+        TreeMap<String, String> rMap = new TreeMap<>();
 
         rMap.put("recipient", Parser.parsePlayerName(rName, recipient.getWorld().getName()));
         rMap.put("sender", senderName);

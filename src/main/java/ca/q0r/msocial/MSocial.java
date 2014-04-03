@@ -23,13 +23,13 @@ public class MSocial extends JavaPlugin {
     public PluginDescriptionFile pdfFile;
 
     // Maps
-    public static HashMap<String, Boolean> isShouting = new HashMap<String, Boolean>();
-    public HashMap<String, Boolean> isMuted = new HashMap<String, Boolean>();
-    public HashMap<String, Boolean> isConv = new HashMap<String, Boolean>();
+    public static HashMap<String, Boolean> isShouting = new HashMap<>();
+    public HashMap<String, Boolean> isMuted = new HashMap<>();
+    public HashMap<String, Boolean> isConv = new HashMap<>();
 
-    public HashMap<String, String> lastPMd = new HashMap<String, String>();
-    public HashMap<String, String> getInvite = new HashMap<String, String>();
-    public HashMap<String, String> chatPartner = new HashMap<String, String>();
+    public HashMap<String, String> lastPMd = new HashMap<>();
+    public HashMap<String, String> getInvite = new HashMap<>();
+    public HashMap<String, String> chatPartner = new HashMap<>();
 
     public void onEnable() {
         // Initialize Plugin Data
