@@ -12,6 +12,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.UUID;
+
 public class DenyCommand implements CommandExecutor {
     private MSocial plugin;
 
@@ -31,27 +33,27 @@ public class DenyCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        String pName = player.getName();
+        UUID pUUID = player.getUniqueId();
         String pWorld = player.getWorld().getName();
 
-        String rName = plugin.getInvite.get(pName);
+        UUID rUUID = plugin.getInvite.get(pUUID);
 
-        if (rName == null) {
+        if (rUUID == null) {
             MessageUtil.sendMessage(player, LocaleType.MESSAGE_CONVERSATION_NO_PENDING.getVal());
             return true;
         }
 
-        Player recipient = plugin.getServer().getPlayer(rName);
+        Player recipient = plugin.getServer().getPlayer(rUUID);
         String rWorld = recipient.getWorld().getName();
 
         if (CommandUtil.isOnlineForCommand(sender, recipient)) {
-            plugin.getInvite.remove(pName);
+            plugin.getInvite.remove(pUUID);
 
-            plugin.isConv.put(pName, false);
-            plugin.isConv.put(rName, false);
+            plugin.isConv.put(pUUID, false);
+            plugin.isConv.put(rUUID, false);
 
-            MessageUtil.sendMessage(player, API.replace(LocaleType.MESSAGE_CONVERSATION_DENIED.getVal(), "player", Parser.parsePlayerName(rName, rWorld), IndicatorType.LOCALE_VAR));
-            MessageUtil.sendMessage(recipient, API.replace(LocaleType.MESSAGE_CONVERSATION_NOT_STARTED.getVal(), "player", Parser.parsePlayerName(pName, pWorld), IndicatorType.LOCALE_VAR));
+            MessageUtil.sendMessage(player, API.replace(LocaleType.MESSAGE_CONVERSATION_DENIED.getVal(), "player", Parser.parsePlayerName(rUUID, rWorld), IndicatorType.LOCALE_VAR));
+            MessageUtil.sendMessage(recipient, API.replace(LocaleType.MESSAGE_CONVERSATION_NOT_STARTED.getVal(), "player", Parser.parsePlayerName(pUUID, pWorld), IndicatorType.LOCALE_VAR));
         }
 
         return true;

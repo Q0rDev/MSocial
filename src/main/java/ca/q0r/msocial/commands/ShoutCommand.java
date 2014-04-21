@@ -43,11 +43,11 @@ public class ShoutCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        MSocial.isShouting.put(sender.getName(), true);
+        MSocial.isShouting.put(player.getUniqueId(), true);
 
-        plugin.getServer().broadcastMessage(Parser.parseChatMessage(player.getName(), player.getWorld().getName(), message));
+        plugin.getServer().broadcastMessage(Parser.parseChatMessage(player.getUniqueId(), player.getWorld().getName(), message));
 
-        MSocial.isShouting.put(sender.getName(), false);
+        MSocial.isShouting.put(player.getUniqueId(), false);
 
         return true;
     }

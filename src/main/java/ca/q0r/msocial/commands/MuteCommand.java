@@ -1,6 +1,7 @@
 package ca.q0r.msocial.commands;
 
 import ca.q0r.mchat.api.API;
+import ca.q0r.mchat.api.Parser;
 import ca.q0r.mchat.types.IndicatorType;
 import ca.q0r.mchat.util.CommandUtil;
 import ca.q0r.mchat.util.MessageUtil;
@@ -12,6 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.TreeMap;
+import java.util.UUID;
 
 public class MuteCommand implements CommandExecutor {
     MSocial plugin;
@@ -30,26 +32,28 @@ public class MuteCommand implements CommandExecutor {
             return false;
         }
 
-        String target = args[0];
-        Player player = plugin.getServer().getPlayer(args[0]);
 
-        if (player != null) {
-            target = player.getName();
+        Player player = API.getPlayer(args[0]);
+
+        if (!CommandUtil.isOnlineForCommand(sender, player)) {
+            return true;
         }
+
+        UUID uuid = player.getUniqueId();
 
         TreeMap<String, String> rMap = new TreeMap<>();
 
-        rMap.put("player", target);
+        rMap.put("player", Parser.parsePlayerName(uuid, player.getWorld().getName()));
 
-        if (plugin.isMuted.get(target) != null && plugin.isMuted.get(target)) {
-            plugin.isMuted.put(target, false);
+        if (plugin.isMuted.get(uuid) != null && plugin.isMuted.get(uuid)) {
+            plugin.isMuted.put(uuid, false);
 
             rMap.put("muted", "unmuted");
             rMap.put("mute", "mute");
 
             MessageUtil.sendMessage(sender, API.replace(LocaleType.MESSAGE_MUTE_MISC.getVal(), rMap, IndicatorType.LOCALE_VAR));
         } else {
-            plugin.isMuted.put(target, true);
+            plugin.isMuted.put(uuid, true);
 
             rMap.put("muted", "muted");
             rMap.put("mute", "unmute");

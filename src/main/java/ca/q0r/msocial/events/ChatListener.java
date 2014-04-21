@@ -10,6 +10,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import java.util.UUID;
+
 public class ChatListener implements Listener {
     private MSocial plugin;
 
@@ -25,24 +27,24 @@ public class ChatListener implements Listener {
         }
 
         Player player = event.getPlayer();
-        String pName = player.getName();
+        UUID pUUID = player.getUniqueId();
 
         String world = player.getWorld().getName();
         String msg = event.getMessage();
-        String eventFormat = Parser.parseChatMessage(pName, world, msg);
+        String eventFormat = Parser.parseChatMessage(pUUID, world, msg);
 
-        if (plugin.isMuted.get(pName) != null
-                && plugin.isMuted.get(pName)) {
+        if (plugin.isMuted.get(pUUID) != null
+                && plugin.isMuted.get(pUUID)) {
             event.setCancelled(true);
             return;
         }
 
-        if (plugin.isConv.get(pName) == null) {
-            plugin.isConv.put(pName, false);
+        if (plugin.isConv.get(pUUID) == null) {
+            plugin.isConv.put(pUUID, false);
         }
 
-        if (plugin.isConv.get(pName)) {
-            Player recipient = plugin.getServer().getPlayer(plugin.chatPartner.get(pName));
+        if (plugin.isConv.get(pUUID)) {
+            Player recipient = plugin.getServer().getPlayer(plugin.chatPartner.get(pUUID));
             recipient.sendMessage(MessageUtil.addColour(LocaleType.MESSAGE_CONVERSATION_CONVERSATION.getVal() + eventFormat));
             player.sendMessage(MessageUtil.addColour(LocaleType.MESSAGE_CONVERSATION_CONVERSATION.getVal() + eventFormat));
             MessageUtil.log(MessageUtil.addColour(LocaleType.MESSAGE_CONVERSATION_CONVERSATION.getVal() + eventFormat));

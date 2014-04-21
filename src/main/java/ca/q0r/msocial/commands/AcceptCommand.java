@@ -10,6 +10,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.UUID;
+
 public class AcceptCommand implements CommandExecutor {
     private MSocial plugin;
 
@@ -28,30 +30,30 @@ public class AcceptCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        String pName = player.getName();
+        UUID pUUID = player.getUniqueId();
         String pWorld = player.getWorld().getName();
 
-        String rName = plugin.getInvite.get(pName);
+        UUID rUUID = plugin.getInvite.get(pUUID);
 
-        if (rName == null) {
+        if (rUUID == null) {
             MessageUtil.sendMessage(player, LocaleType.MESSAGE_CONVERSATION_NO_PENDING.getVal());
             return true;
         }
 
-        Player recipient = plugin.getServer().getPlayer(rName);
+        Player recipient = plugin.getServer().getPlayer(rUUID);
         String rWorld = recipient.getWorld().getName();
 
-        if (CommandUtil.isOnlineForCommand(sender, rName)) {
-            plugin.getInvite.remove(pName);
+        if (CommandUtil.isOnlineForCommand(sender, rUUID)) {
+            plugin.getInvite.remove(pUUID);
 
-            plugin.isConv.put(pName, true);
-            plugin.isConv.put(rName, true);
+            plugin.isConv.put(pUUID, true);
+            plugin.isConv.put(rUUID, true);
 
-            plugin.chatPartner.put(rName, pName);
-            plugin.chatPartner.put(pName, rName);
+            plugin.chatPartner.put(rUUID, pUUID);
+            plugin.chatPartner.put(pUUID, rUUID);
 
-            MessageUtil.sendMessage(player, LocaleType.MESSAGE_CONVERSATION_STARTED.getVal().replace("%player", Parser.parsePlayerName(rName, rWorld)));
-            MessageUtil.sendMessage(recipient, LocaleType.MESSAGE_CONVERSATION_ACCEPTED.getVal().replace("%player", Parser.parsePlayerName(pName, pWorld)));
+            MessageUtil.sendMessage(player, LocaleType.MESSAGE_CONVERSATION_STARTED.getVal().replace("%player", Parser.parsePlayerName(rUUID, rWorld)));
+            MessageUtil.sendMessage(recipient, LocaleType.MESSAGE_CONVERSATION_ACCEPTED.getVal().replace("%player", Parser.parsePlayerName(pUUID, pWorld)));
         }
 
         return true;

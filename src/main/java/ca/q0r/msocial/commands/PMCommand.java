@@ -13,6 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.TreeMap;
+import java.util.UUID;
 
 public class PMCommand implements CommandExecutor {
     MSocial plugin;
@@ -36,7 +37,7 @@ public class PMCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        String pName = player.getName();
+        UUID pUUID = player.getUniqueId();
         String world = player.getWorld().getName();
 
         if (args.length < 2) {
@@ -49,23 +50,24 @@ public class PMCommand implements CommandExecutor {
             message += " " + args[i];
         }
 
-        if (!CommandUtil.isOnlineForCommand(sender, args[0])) {
+        Player recipient = API.getPlayer(args[0]);
+
+        if (!CommandUtil.isOnlineForCommand(sender, recipient)) {
             return true;
         }
 
-        Player recipient = plugin.getServer().getPlayer(args[0]);
-        String rName = recipient.getName();
-        String senderName = Parser.parsePlayerName(pName, world);
+        UUID rUUID = recipient.getUniqueId();
+        String senderName = Parser.parsePlayerName(pUUID, world);
 
         TreeMap<String, String> rMap = new TreeMap<>();
 
-        rMap.put("recipient", Parser.parsePlayerName(rName, recipient.getWorld().getName()));
+        rMap.put("recipient", Parser.parsePlayerName(rUUID, recipient.getWorld().getName()));
         rMap.put("sender", senderName);
         rMap.put("msg", message);
 
         player.sendMessage(API.replace(LocaleType.FORMAT_PM_SENT.getVal(), rMap, IndicatorType.LOCALE_VAR));
 
-        plugin.lastPMd.put(rName, pName);
+        plugin.lastPMd.put(rUUID, pUUID);
 
         recipient.sendMessage(API.replace(LocaleType.FORMAT_PM_RECEIVED.getVal(), rMap, IndicatorType.LOCALE_VAR));
         MessageUtil.log(API.replace(LocaleType.FORMAT_PM_RECEIVED.getVal(), rMap, IndicatorType.LOCALE_VAR));

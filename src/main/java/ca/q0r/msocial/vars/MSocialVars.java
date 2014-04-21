@@ -5,7 +5,8 @@ import ca.q0r.mchat.variables.VariableManager;
 import ca.q0r.mchat.yml.config.ConfigType;
 import ca.q0r.mchat.yml.locale.LocaleType;
 import ca.q0r.msocial.MSocial;
-import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 public class MSocialVars {
     public static void addVars() {
@@ -14,19 +15,14 @@ public class MSocialVars {
 
     private static class DistanceType extends Var {
         @Var.Keys(keys = {"distancetype", "dtype"})
-        public Object getValue(Object obj) {
+        public String getValue(UUID uuid) {
             String dType = "";
 
-            if (obj != null && obj instanceof Player) {
-                Player player = (Player) obj;
-                String pName = player.getName();
-
-                if (MSocial.isShouting.get(pName) != null
-                        && MSocial.isShouting.get(pName)) {
-                    dType = ca.q0r.msocial.yml.locale.LocaleType.FORMAT_SHOUT.getRaw();
-                } else if (ConfigType.MCHAT_CHAT_DISTANCE.getDouble() > 0) {
-                    dType = LocaleType.FORMAT_LOCAL.getVal();
-                }
+            if (MSocial.isShouting.get(uuid) != null
+                    && MSocial.isShouting.get(uuid)) {
+                dType = ca.q0r.msocial.yml.locale.LocaleType.FORMAT_SHOUT.getRaw();
+            } else if (ConfigType.MCHAT_CHAT_DISTANCE.getDouble() > 0) {
+                dType = LocaleType.FORMAT_LOCAL.getVal();
             }
 
             return dType;

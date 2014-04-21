@@ -16,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 public class MSocial extends JavaPlugin {
     // Default Plugin Data
@@ -23,13 +24,13 @@ public class MSocial extends JavaPlugin {
     public PluginDescriptionFile pdfFile;
 
     // Maps
-    public static HashMap<String, Boolean> isShouting = new HashMap<>();
-    public HashMap<String, Boolean> isMuted = new HashMap<>();
-    public HashMap<String, Boolean> isConv = new HashMap<>();
+    public static HashMap<UUID, Boolean> isShouting = new HashMap<>();
+    public HashMap<UUID, Boolean> isMuted = new HashMap<>();
+    public HashMap<UUID, Boolean> isConv = new HashMap<>();
 
-    public HashMap<String, String> lastPMd = new HashMap<>();
-    public HashMap<String, String> getInvite = new HashMap<>();
-    public HashMap<String, String> chatPartner = new HashMap<>();
+    public HashMap<UUID, UUID> lastPMd = new HashMap<>();
+    public HashMap<UUID, UUID> getInvite = new HashMap<>();
+    public HashMap<UUID, UUID> chatPartner = new HashMap<>();
 
     public void onEnable() {
         // Initialize Plugin Data

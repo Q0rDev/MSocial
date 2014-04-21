@@ -13,6 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.TreeMap;
+import java.util.UUID;
 
 public class ReplyCommand implements CommandExecutor {
     MSocial plugin;
@@ -36,7 +37,7 @@ public class ReplyCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        String pName = player.getName();
+        UUID pUUID = player.getUniqueId();
         String world = player.getWorld().getName();
 
         message = "";
@@ -45,30 +46,30 @@ public class ReplyCommand implements CommandExecutor {
             message += " " + arg;
         }
 
-        String rName = plugin.lastPMd.get(pName);
+        UUID rUUID = plugin.lastPMd.get(pUUID);
 
-        if (rName == null) {
+        if (rUUID == null) {
             MessageUtil.sendMessage(player, LocaleType.MESSAGE_PM_NO_PM.getVal());
             return true;
         }
 
-        Player recipient = plugin.getServer().getPlayer(rName);
+        Player recipient = plugin.getServer().getPlayer(rUUID);
 
         if (!CommandUtil.isOnlineForCommand(sender, recipient)) {
             return true;
         }
 
-        String senderName = Parser.parsePlayerName(pName, world);
+        String senderName = Parser.parsePlayerName(pUUID, world);
 
         TreeMap<String, String> rMap = new TreeMap<>();
 
-        rMap.put("recipient", Parser.parsePlayerName(rName, recipient.getWorld().getName()));
+        rMap.put("recipient", Parser.parsePlayerName(rUUID, recipient.getWorld().getName()));
         rMap.put("sender", senderName);
         rMap.put("msg", message);
 
         player.sendMessage(API.replace(LocaleType.FORMAT_PM_SENT.getVal(), rMap, IndicatorType.LOCALE_VAR));
 
-        plugin.lastPMd.put(rName, pName);
+        plugin.lastPMd.put(rUUID, pUUID);
 
         recipient.sendMessage(API.replace(LocaleType.FORMAT_PM_RECEIVED.getVal(), rMap, IndicatorType.LOCALE_VAR));
         MessageUtil.log(API.replace(LocaleType.FORMAT_PM_RECEIVED.getVal(), rMap, IndicatorType.LOCALE_VAR));
