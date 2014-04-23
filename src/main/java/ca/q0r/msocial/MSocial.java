@@ -91,13 +91,13 @@ public class MSocial extends JavaPlugin {
 
     void setupCommands() {
         regCommands("msocial", new MSocialCommand());
-        regCommands("pmchat", new PMCommand(this));
+        regCommands("pmchat", new PMCommand());
         regCommands("pmchataccept", new ResponseCommand("pmchataccept", true));
         regCommands("pmchatdeny", new ResponseCommand("pmchatdeny", false));
         regCommands("pmchatinvite", new InviteCommand());
         regCommands("pmchatleave", new LeaveCommand());
         regCommands("pmchatreply", new ReplyCommand());
-        regCommands("mchatmute", new MuteCommand(this));
+        regCommands("mchatmute", new MuteCommand());
         regCommands("mchatsay", new SayCommand());
         regCommands("mchatshout", new ShoutCommand());
     }
@@ -109,7 +109,7 @@ public class MSocial extends JavaPlugin {
     }
 
     void setupEvents() {
-        pm.registerEvents(new ChatListener(this), this);
+        pm.registerEvents(new ChatListener(), this);
         pm.registerEvents(new CommandListener(), this);
     }
 
