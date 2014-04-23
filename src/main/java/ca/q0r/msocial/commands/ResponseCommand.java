@@ -3,8 +3,9 @@ package ca.q0r.msocial.commands;
 import ca.q0r.mchat.api.Parser;
 import ca.q0r.mchat.util.CommandUtil;
 import ca.q0r.mchat.util.MessageUtil;
-import ca.q0r.msocial.MSocial;
+import ca.q0r.msocial.api.SocialApi;
 import ca.q0r.msocial.yml.locale.LocaleType;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,18 +13,21 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class AcceptCommand implements CommandExecutor {
-    private MSocial plugin;
+public class ResponseCommand implements CommandExecutor {
+    String cmd;
+    Boolean response;
 
-    public AcceptCommand(MSocial instance) {
-        plugin = instance;
+    public ResponseCommand(String cmd, Boolean response) {
+        this.cmd = cmd;
+        this.response = response;
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!command.getName().equalsIgnoreCase("pmchataccept")) {
+        if (!command.getName().equalsIgnoreCase(cmd)) {
             return true;
         }
 
+        //TODO Allow Console's to PM
         if (!(sender instanceof Player)) {
             MessageUtil.sendMessage(sender, "Console's can't use conversation commands.");
             return true;
@@ -33,27 +37,29 @@ public class AcceptCommand implements CommandExecutor {
         UUID pUUID = player.getUniqueId();
         String pWorld = player.getWorld().getName();
 
-        UUID rUUID = plugin.getInvite.get(pUUID);
+        UUID rUUID = SocialApi.getInvitePartner(pUUID);
 
         if (rUUID == null) {
             MessageUtil.sendMessage(player, LocaleType.MESSAGE_CONVERSATION_NO_PENDING.getVal());
             return true;
         }
 
-        Player recipient = plugin.getServer().getPlayer(rUUID);
+        Player recipient = Bukkit.getServer().getPlayer(rUUID);
         String rWorld = recipient.getWorld().getName();
 
         if (CommandUtil.isOnlineForCommand(sender, rUUID)) {
-            plugin.getInvite.remove(pUUID);
+            SocialApi.setConvo(pUUID, rUUID, response);
 
-            plugin.isConv.put(pUUID, true);
-            plugin.isConv.put(rUUID, true);
+            String start = LocaleType.MESSAGE_CONVERSATION_STARTED.getVal();
+            String reply = LocaleType.MESSAGE_CONVERSATION_ACCEPTED.getVal();
 
-            plugin.chatPartner.put(rUUID, pUUID);
-            plugin.chatPartner.put(pUUID, rUUID);
+            if (!this.response) {
+                start = LocaleType.MESSAGE_CONVERSATION_NOT_STARTED.getVal();
+                reply = LocaleType.MESSAGE_CONVERSATION_DENIED.getVal();
+            }
 
-            MessageUtil.sendMessage(player, LocaleType.MESSAGE_CONVERSATION_STARTED.getVal().replace("%player", Parser.parsePlayerName(rUUID, rWorld)));
-            MessageUtil.sendMessage(recipient, LocaleType.MESSAGE_CONVERSATION_ACCEPTED.getVal().replace("%player", Parser.parsePlayerName(pUUID, pWorld)));
+            MessageUtil.sendMessage(player, start.replace("%player", Parser.parsePlayerName(rUUID, rWorld)));
+            MessageUtil.sendMessage(recipient, reply.replace("%player", Parser.parsePlayerName(pUUID, pWorld)));
         }
 
         return true;

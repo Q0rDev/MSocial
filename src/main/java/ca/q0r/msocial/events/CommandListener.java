@@ -12,8 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CommandListener implements Listener {
-    public CommandListener() {
-    }
+    public CommandListener() { }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
@@ -21,8 +20,8 @@ public class CommandListener implements Listener {
         String command = msg.split(" ")[0].replace("/", "");
 
         for (Map.Entry<String, List<String>> entry : ((ConfigYml) YmlManager.getYml(YmlType.CONFIG_YML)).getAliasMap().entrySet()) {
-            for (String comm : entry.getValue()) {
-                if (comm.equalsIgnoreCase(command)) {
+            for (String cmd : entry.getValue()) {
+                if (cmd.equalsIgnoreCase(command)) {
                     event.setMessage(msg.replaceFirst("/" + command, "/" + entry.getKey()));
                     return;
                 }

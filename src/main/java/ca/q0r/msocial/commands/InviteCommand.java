@@ -5,7 +5,7 @@ import ca.q0r.mchat.api.Parser;
 import ca.q0r.mchat.types.IndicatorType;
 import ca.q0r.mchat.util.CommandUtil;
 import ca.q0r.mchat.util.MessageUtil;
-import ca.q0r.msocial.MSocial;
+import ca.q0r.msocial.api.SocialApi;
 import ca.q0r.msocial.yml.locale.LocaleType;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,11 +15,7 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 public class InviteCommand implements CommandExecutor {
-    private MSocial plugin;
-
-    public InviteCommand(MSocial instance) {
-        plugin = instance;
-    }
+    public InviteCommand() { }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("pmchatinvite")
@@ -49,8 +45,8 @@ public class InviteCommand implements CommandExecutor {
             return true;
         }
 
-        if (plugin.getInvite.get(rUUID) == null) {
-            plugin.getInvite.put(rUUID, pUUid);
+        if (SocialApi.getInvitePartner(rUUID) == null) {
+            SocialApi.setInvitePartner(rUUID, pUUid);
 
             MessageUtil.sendMessage(player, API.replace(LocaleType.MESSAGE_CONVERSATION_INVITE_SENT.getVal(), "player", Parser.parsePlayerName(rUUID, rWorld), IndicatorType.LOCALE_VAR));
             MessageUtil.sendMessage(recipient, API.replace(LocaleType.MESSAGE_CONVERSATION_INVITED.getVal(), "player", Parser.parsePlayerName(pUUid, pWorld), IndicatorType.LOCALE_VAR));

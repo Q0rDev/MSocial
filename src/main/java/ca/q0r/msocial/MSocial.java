@@ -3,6 +3,7 @@ package ca.q0r.msocial;
 import ca.q0r.mchat.metrics.Metrics;
 import ca.q0r.mchat.util.MessageUtil;
 import ca.q0r.mchat.util.Timer;
+import ca.q0r.msocial.api.SocialApi;
 import ca.q0r.msocial.commands.*;
 import ca.q0r.msocial.events.ChatListener;
 import ca.q0r.msocial.events.CommandListener;
@@ -15,22 +16,10 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.HashMap;
-import java.util.UUID;
-
 public class MSocial extends JavaPlugin {
     // Default Plugin Data
     public PluginManager pm;
     public PluginDescriptionFile pdfFile;
-
-    // Maps
-    public static HashMap<UUID, Boolean> isShouting = new HashMap<>();
-    public HashMap<UUID, Boolean> isMuted = new HashMap<>();
-    public HashMap<UUID, Boolean> isConv = new HashMap<>();
-
-    public HashMap<UUID, UUID> lastPMd = new HashMap<>();
-    public HashMap<UUID, UUID> getInvite = new HashMap<>();
-    public HashMap<UUID, UUID> chatPartner = new HashMap<>();
 
     public void onEnable() {
         // Initialize Plugin Data
@@ -55,6 +44,9 @@ public class MSocial extends JavaPlugin {
 
             // Load Yml
             YmlManager.initialize();
+
+            // Load SocialApi
+            SocialApi.initialize();
 
             setupCommands();
 
@@ -100,14 +92,14 @@ public class MSocial extends JavaPlugin {
     void setupCommands() {
         regCommands("msocial", new MSocialCommand());
         regCommands("pmchat", new PMCommand(this));
-        regCommands("pmchataccept", new AcceptCommand(this));
-        regCommands("pmchatdeny", new DenyCommand(this));
-        regCommands("pmchatinvite", new InviteCommand(this));
-        regCommands("pmchatleave", new LeaveCommand(this));
-        regCommands("pmchatreply", new ReplyCommand(this));
+        regCommands("pmchataccept", new ResponseCommand("pmchataccept", true));
+        regCommands("pmchatdeny", new ResponseCommand("pmchatdeny", false));
+        regCommands("pmchatinvite", new InviteCommand());
+        regCommands("pmchatleave", new LeaveCommand());
+        regCommands("pmchatreply", new ReplyCommand());
         regCommands("mchatmute", new MuteCommand(this));
-        regCommands("mchatsay", new SayCommand(this));
-        regCommands("mchatshout", new ShoutCommand(this));
+        regCommands("mchatsay", new SayCommand());
+        regCommands("mchatshout", new ShoutCommand());
     }
 
     void regCommands(String command, CommandExecutor executor) {
