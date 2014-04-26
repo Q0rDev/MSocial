@@ -15,7 +15,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import java.util.UUID;
 
 public class ChatListener implements Listener {
-    public ChatListener() { }
+    public ChatListener() {
+    }
 
 
     @EventHandler(priority = EventPriority.LOW)

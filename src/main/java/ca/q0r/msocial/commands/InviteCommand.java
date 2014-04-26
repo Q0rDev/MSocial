@@ -15,7 +15,8 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 public class InviteCommand implements CommandExecutor {
-    public InviteCommand() { }
+    public InviteCommand() {
+    }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("pmchatinvite")

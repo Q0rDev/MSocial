@@ -15,7 +15,8 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 public class LeaveCommand implements CommandExecutor {
-    public LeaveCommand() { }
+    public LeaveCommand() {
+    }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("pmchatleave")) {

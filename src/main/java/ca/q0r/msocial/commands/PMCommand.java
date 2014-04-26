@@ -12,7 +12,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class PMCommand implements CommandExecutor {
-    public PMCommand() { }
+    public PMCommand() {
+    }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("pmchat")

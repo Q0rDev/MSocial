@@ -19,7 +19,7 @@ public class SocialApi {
     private static HashMap<UUID, UUID> lastPm;
     private static HashMap<UUID, UUID> invite;
     private static HashMap<UUID, UUID> partner;
-    
+
     public static void initialize() {
         shouting = new HashMap<>();
         muted = new HashMap<>();

@@ -8,9 +8,11 @@ import org.bukkit.event.HandlerList;
 
 public class MessagingEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
+
     public HandlerList getHandlers() {
         return handlers;
     }
+
     public static HandlerList getHandlerList() {
         return handlers;
     }

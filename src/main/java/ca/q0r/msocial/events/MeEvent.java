@@ -6,7 +6,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 public class MeEvent implements Listener {
-    public MeEvent() { }
+    public MeEvent() {
+    }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onMe(ca.q0r.mchat.events.custom.MeEvent event) {

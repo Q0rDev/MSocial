@@ -16,7 +16,8 @@ import java.util.TreeMap;
 import java.util.UUID;
 
 public class MuteCommand implements CommandExecutor {
-    public MuteCommand() { }
+    public MuteCommand() {
+    }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!command.getName().equalsIgnoreCase("mchatmute")
