@@ -8,7 +8,7 @@ import ca.q0r.msocial.api.SocialApi;
 
 import java.util.UUID;
 
-public class MSocialVars extends VarAddon {
+public class MSocialVars {
     public static void addVars() {
         VariableManager.addVar(new DistanceType());
     }
