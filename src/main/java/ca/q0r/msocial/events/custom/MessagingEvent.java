@@ -8,19 +8,9 @@ import org.bukkit.event.HandlerList;
 
 public class MessagingEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
-
-    public HandlerList getHandlers() {
-        return handlers;
-    }
-
-    public static HandlerList getHandlerList() {
-        return handlers;
-    }
-
     private Player from, to;
     private String message;
     private Boolean cancelled;
-
     public MessagingEvent(Player from, Player to, String message) {
         this.from = from;
         this.to = to;
@@ -29,8 +19,20 @@ public class MessagingEvent extends Event implements Cancellable {
         this.cancelled = false;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
+
+    public HandlerList getHandlers() {
+        return handlers;
+    }
+
     public boolean isCancelled() {
         return cancelled;
+    }
+
+    public void setCancelled(boolean state) {
+        this.cancelled = state;
     }
 
     public Player getFrom() {
@@ -47,9 +49,5 @@ public class MessagingEvent extends Event implements Cancellable {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public void setCancelled(boolean state) {
-        this.cancelled = state;
     }
 }

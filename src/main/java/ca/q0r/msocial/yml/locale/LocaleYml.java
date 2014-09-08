@@ -12,6 +12,8 @@ public class LocaleYml extends Yml {
     }
 
     public void loadDefaults() {
+        editOption("message.general.mute", "message.mute.target");
+
         checkOption("format.pm.received", "%sender &1-&2-&3-&4> &fMe: %msg");
         checkOption("format.pm.sent", "&fMe &1-&2-&3-&4> &4%recipient&f: %msg");
         checkOption("format.say", "&6[Server]&e %msg");
@@ -33,7 +35,12 @@ public class LocaleYml extends Yml {
         checkOption("message.convo.notStarted", "Convo request with &5'&4%player&5'&4 has been denied.");
         checkOption("message.convo.started", "You have started a Convo with &5'&4%player&5'&4.");
         checkOption("message.shout.noInput", "You can't shout nothing!");
-        checkOption("message.general.mute", "Target '%player' successfully %muted. To %mute use this command again.");
+        checkOption("message.mute.target", "Target '%player' successfully %muted. To %mute use this command again. [%time]");
+        checkOption("message.mute.recipient", "You have been muted! [%time]");
+        checkOption("message.mute.stillMuted", "You are still muted! Time Left %time!");
+        checkOption("message.mute.seconds", "Seconds");
+        checkOption("message.mute.minutes", "Minutes");
+        checkOption("message.mute.hours", "Hours");
         checkOption("message.pm.noPm", "No one has yet PM'd you.");
 
         save();

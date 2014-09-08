@@ -22,7 +22,7 @@ commands:
         ~permissions: mchat.shout
     mchatmute:
         usage: |
-            /<command> [Player] - Mutes a player.
+            /<command> [Player] {Duration} - Mutes a player with optional duration (Xs/m/h).
         aliases: [mmute]
         ~permissions: mchat.mute
     pmchat:

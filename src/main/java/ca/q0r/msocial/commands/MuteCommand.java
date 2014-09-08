@@ -38,7 +38,7 @@ public class MuteCommand implements CommandExecutor {
 
         UUID uuid = player.getUniqueId();
 
-        TreeMap<String, String> rMap = new TreeMap<>();
+        TreeMap<String, String> rMap = new TreeMap<String, String>();
 
         rMap.put("player", Parser.parsePlayerName(uuid, player.getWorld().getName()));
 
@@ -48,14 +48,42 @@ public class MuteCommand implements CommandExecutor {
             rMap.put("muted", "unmuted");
             rMap.put("mute", "mute");
 
-            MessageUtil.sendMessage(sender, API.replace(LocaleType.MESSAGE_MUTE_MISC.getVal(), rMap, IndicatorType.LOCALE_VAR));
+            MessageUtil.sendMessage(sender, API.replace(LocaleType.MESSAGE_MUTE_TARGET.getVal(), rMap, IndicatorType.LOCALE_VAR));
+            MessageUtil.sendMessage(player, API.replace(LocaleType.MESSAGE_MUTE_RECIPIENT.getVal(), rMap, IndicatorType.LOCALE_VAR));
         } else {
-            SocialApi.setMuted(uuid, true);
+            String unit = "\u221e";
+
+            if (args.length < 2) {
+                SocialApi.setMuted(uuid, true);
+            } else {
+                try {
+                    String all = args[1];
+                    Long time = Long.parseLong(all.substring(0, all.length() - 1));
+                    String value = all.substring(all.length() - 1);
+
+                    if (value.equalsIgnoreCase("s")) {
+                        unit = time + " " + LocaleType.MESSAGE_MUTE_UNIT_SECONDS.getVal();
+                        time = time * 1000;
+                    } else if (value.equalsIgnoreCase("m")) {
+                        unit = time + " " + LocaleType.MESSAGE_MUTE_UNIT_MINUTES.getVal();
+                        time = time * 60000;
+                    } else if (value.equalsIgnoreCase("h")) {
+                        unit = time + " " + LocaleType.MESSAGE_MUTE_UNIT_HOURS.getVal();
+                        time = time * 3600000;
+                    }
+
+                    SocialApi.setMuted(uuid, time + System.currentTimeMillis());
+                } catch (Exception ignored) {
+                    return false;
+                }
+            }
 
             rMap.put("muted", "muted");
             rMap.put("mute", "unmute");
+            rMap.put("time", unit);
 
-            MessageUtil.sendMessage(sender, API.replace(LocaleType.MESSAGE_MUTE_MISC.getVal(), rMap, IndicatorType.LOCALE_VAR));
+            MessageUtil.sendMessage(sender, API.replace(LocaleType.MESSAGE_MUTE_TARGET.getVal(), rMap, IndicatorType.LOCALE_VAR));
+            MessageUtil.sendMessage(player, API.replace(LocaleType.MESSAGE_MUTE_RECIPIENT.getVal(), rMap, IndicatorType.LOCALE_VAR));
         }
 
         return true;

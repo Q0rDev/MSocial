@@ -13,21 +13,23 @@ import java.util.UUID;
 
 public class SocialApi {
     private static HashMap<UUID, Boolean> shouting;
-    private static HashMap<UUID, Boolean> muted;
     private static HashMap<UUID, Boolean> convo;
 
     private static HashMap<UUID, UUID> lastPm;
     private static HashMap<UUID, UUID> invite;
     private static HashMap<UUID, UUID> partner;
 
-    public static void initialize() {
-        shouting = new HashMap<>();
-        muted = new HashMap<>();
-        convo = new HashMap<>();
+    private static HashMap<UUID, Long> muted;
 
-        lastPm = new HashMap<>();
-        invite = new HashMap<>();
-        partner = new HashMap<>();
+    public static void initialize() {
+        shouting = new HashMap<UUID, Boolean>();
+        convo = new HashMap<UUID, Boolean>();
+
+        lastPm = new HashMap<UUID, UUID>();
+        invite = new HashMap<UUID, UUID>();
+        partner = new HashMap<UUID, UUID>();
+
+        muted = new HashMap<UUID, Long>();
     }
 
     public static Boolean isShouting(UUID uuid) {
@@ -35,7 +37,7 @@ public class SocialApi {
     }
 
     public static Boolean isMuted(UUID uuid) {
-        return muted.get(uuid) != null && muted.get(uuid);
+        return muted.get(uuid) != null && (muted.get(uuid) >= System.currentTimeMillis() || muted.get(uuid) == -1L);
     }
 
     public static Boolean isConvo(UUID uuid) {
@@ -54,12 +56,28 @@ public class SocialApi {
         return partner.get(uuid);
     }
 
+    public static Long getMuteTimeLeft(UUID uuid) {
+        if (muted.get(uuid) != null && muted.get(uuid) != -1L) {
+            return muted.get(uuid) - System.currentTimeMillis();
+        }
+
+        return null;
+    }
+
     public static void setShouting(UUID uuid, Boolean state) {
         shouting.put(uuid, state);
     }
 
     public static void setMuted(UUID uuid, Boolean state) {
-        muted.put(uuid, state);
+        if (state) {
+            muted.put(uuid, -1L);
+        } else {
+            muted.remove(uuid);
+        }
+    }
+
+    public static void setMuted(UUID uuid, Long duration) {
+        muted.put(uuid, duration);
     }
 
     public static void setLastMessaged(UUID uuid, UUID other) {
@@ -85,7 +103,7 @@ public class SocialApi {
     public static void sendMessage(Player from, Player to, String msg) {
         String senderName = Parser.parsePlayerName(from.getUniqueId(), from.getWorld().getName());
 
-        TreeMap<String, String> rMap = new TreeMap<>();
+        TreeMap<String, String> rMap = new TreeMap<String, String>();
 
         rMap.put("recipient", Parser.parsePlayerName(to.getUniqueId(), to.getWorld().getName()));
         rMap.put("sender", senderName);

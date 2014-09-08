@@ -22,7 +22,12 @@ public enum LocaleType {
     MESSAGE_CONVERSATION_NOT_STARTED("message.convo.notStarted"),
     MESSAGE_CONVERSATION_NO_PENDING("message.convo.noPending"),
     MESSAGE_CONVERSATION_STARTED("message.convo.started"),
-    MESSAGE_MUTE_MISC("message.general.mute"),
+    MESSAGE_MUTE_TARGET("message.mute.target"),
+    MESSAGE_MUTE_RECIPIENT("message.mute.recipient"),
+    MESSAGE_MUTE_STILL_MUTED("message.mute.stillMuted"),
+    MESSAGE_MUTE_UNIT_SECONDS("message.mute.seconds"),
+    MESSAGE_MUTE_UNIT_MINUTES("message.mute.minutes"),
+    MESSAGE_MUTE_UNIT_HOURS("message.mute.hours"),
     MESSAGE_PM_NO_PM("message.pm.noPm"),
     MESSAGE_SHOUT_NO_INPUT("message.shout.noInput");
 
