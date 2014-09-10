@@ -10,6 +10,7 @@ import java.util.UUID;
 
 public class MSocialVars {
     public static void addVars() {
+        VariableManager.removeVar("distancetype");
         VariableManager.addVar(new DistanceType());
     }
 
